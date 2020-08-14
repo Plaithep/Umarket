@@ -1,25 +1,3 @@
-// import { StatusBar } from 'expo-status-bar';
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
 import React from 'react'
 import {createAppContainer,createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
@@ -53,6 +31,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+
+
 const AppTabNavigator = createBottomTabNavigator(
   {
       Home:{
@@ -60,8 +40,41 @@ const AppTabNavigator = createBottomTabNavigator(
         navigationOptions:{
           tabBarIcon:({tintColor}) => <Ionicons name="ios-home" size={24} color={tintColor}></Ionicons>
         }
+      },
+      Messagae:{
+        screen: MessagaeScreen,
+        navigationOptions:{
+        tabBarIcon:({tintColor}) => <Ionicons name="ios-chatboxes" size={24} color={tintColor}></Ionicons>
+        }
+      },
+      Post:{
+        screen: PostScreen,
+        navigationOptions:{
+        tabBarIcon:({tintColor}) => <Ionicons name="ios-add-circle" size={24} color={tintColor}></Ionicons>
+        }
+      }, 
+      Notification:{
+        screen: NotificationScreen,
+        navigationOptions:{
+        tabBarIcon:({tintColor}) => <Ionicons name="ios-notifications" size={24} color={tintColor}></Ionicons>
+        }
+      },
+      Profile:{
+        screen: ProfileScreen,
+        navigationOptions:{
+        tabBarIcon:({tintColor}) => <Ionicons name="ios-person" size={24} color={tintColor}></Ionicons>
+        }
       }
-  }
+      
+
+  },
+  {
+      tabBarOptions:{
+        activeTintColor: "#161F3D",
+        inactiveTintColor: "#BBBBC4",
+        showLabel: false
+      }
+    }
 )
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
